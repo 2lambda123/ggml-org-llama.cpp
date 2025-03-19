@@ -3181,7 +3181,6 @@ class NomicBertModel(BertModel):
         assert self.hparams["rotary_emb_interleaved"] is False
         assert self.hparams["rotary_emb_scale_base"] is None
 
-
     def modify_tensors(self, data_torch: torch.Tensor, name: str, bid: int | None) -> Iterable[tuple[str, torch.Tensor]]:
         # If the tensor is an experts bias tensor, skip it by returning an empty list.
         if "mlp.experts.bias" in name:
@@ -3197,7 +3196,6 @@ class NomicBertModel(BertModel):
             return [(self.map_tensor_name(name) + ".weight", data_torch)]
 
         return [(self.map_tensor_name(name), data_torch)]
-
 
     def set_gguf_parameters(self):
         super().set_gguf_parameters()
