@@ -3145,7 +3145,7 @@ class NomicBertModel(BertModel):
 
         hparams = Model.load_hparams(dir_model)
 
-        if (hparams.get("moe_every_n_layers", 0) < 1):
+        if (hparams is None or hparams.get("moe_every_n_layers", 0) < 1):
             self.model_arch = gguf.MODEL_ARCH.NOMIC_BERT
         else:
             self.model_arch = gguf.MODEL_ARCH.NOMIC_BERT_MOE
